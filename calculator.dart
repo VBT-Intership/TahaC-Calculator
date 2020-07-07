@@ -1,6 +1,8 @@
 import 'dart:io';
 
 class Calculator{
+  int firstNumber;
+  int secondNumber;
   sum(int firstNumber, int secondNumber) {
     int total = firstNumber + secondNumber;
     print("Toplam Sonucu: $total");
@@ -27,37 +29,44 @@ class Calculator{
 
   numSelect() {
     stdout.write("İlk sayıyı giriniz: ");
-    var firstNumber = int.parse(stdin.readLineSync());
-    stdout.write("İkini sayıyı giriniz: ");
-    int secondNumber = int.parse(stdin.readLineSync());
-    consoleScreen(firstNumber, secondNumber);
+    firstNumber = int.parse(stdin.readLineSync());
+    stdout.write("İkinci sayıyı giriniz: ");
+    secondNumber = int.parse(stdin.readLineSync());
+
   }
 
-  void consoleScreen(int firstNumber, int secondNumber) {
+  void consoleScreen() {
     stdout.write(
-        "-Yapmak İstediğiniz İşlem-\n 1-Toplama\n 2-Çıkarma\n 3-Çarpma\n 4-Bölme\n İşleminiz : ");
-    var islem = stdin.readLineSync();
-    switch (islem) {
+        "-Yapmak İstediğiniz İşlem-\n 1-Toplama\n 2-Çıkarma\n 3-Çarpma\n 4-Bölme\n 5-Çıkış\n İşleminiz : ");
+    var choice = stdin.readLineSync();
+    choice=="5" ? exit(0) : numSelect();
+    switch (choice) {
       case "1":
         {
           sum(firstNumber, secondNumber);
+          consoleScreen();
           break;
         }
       case "2":
         {
           odd(firstNumber, secondNumber);
+          consoleScreen();
           break;
         }
       case "3":
         {
           multi(firstNumber, secondNumber);
+          consoleScreen();
           break;
         }
       case "4":
         {
           div(firstNumber, secondNumber);
+          consoleScreen();
+
           break;
         }
+
       default:
         {
           print("Hatalı işlem yapıldı.");
